@@ -1,7 +1,7 @@
 ﻿using Autofac;
+using AutoMapper;
 using Project_Model_DDD.Application;
 using Project_Model_DDD.Application.Interfaces;
-using Project_Model_DDD.Application.Interfaces.Mappers;
 using Project_Model_DDD.Application.Mappers;
 using Project_Model_DDD.Domain.Core.Interfaces.Repositories;
 using Project_Model_DDD.Domain.Core.Interfaces.Services;
@@ -22,10 +22,17 @@ namespace Project_Model_DDD.Infrastructure.CrossCutting.IOC
             builder.RegisterType<ServiceProduct>().As<IServiceProduct>();
             builder.RegisterType<RepositoryClient>().As<IRepositoryClient>();
             builder.RegisterType<RepositoryProduct>().As<IRepositoryProduct>();
-            builder.RegisterType<MapperClient>().As<IMapperClient>();
-            builder.RegisterType<MapperProduct>().As<IMapperProduct>();
+            builder.Register(ctx => new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile(new DtoToModelMappingClient());
+                cfg.AddProfile(new ModelToDtoMappingClient());
+                cfg.AddProfile(new DtoToModelMappingProduct());
+                cfg.AddProfile(new ModelToDtoMappingProduct());
+            }));
 
-            #endregion IOC
+            builder.Register(ctx => ctx.Resolve<MapperConfiguration>().CreateMapper()).As<IMapper>().InstancePerLifetimeScope();
         }
+
+        #endregion IOC
     }
 }
