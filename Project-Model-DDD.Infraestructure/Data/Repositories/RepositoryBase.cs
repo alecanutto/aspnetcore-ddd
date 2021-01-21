@@ -9,7 +9,7 @@ namespace Project_Model_DDD.Infrastructure.Data.Repositories
 {
     public class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : class
     {
-        private readonly SqlContext sqlContext;
+        protected readonly SqlContext sqlContext;
 
         public RepositoryBase(SqlContext sqlContext)
         {
@@ -23,9 +23,9 @@ namespace Project_Model_DDD.Infrastructure.Data.Repositories
                 sqlContext.Set<TEntity>().Add(obj);
                 sqlContext.SaveChanges();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
 
@@ -36,9 +36,9 @@ namespace Project_Model_DDD.Infrastructure.Data.Repositories
                 sqlContext.Entry(obj).State = EntityState.Modified;
                 sqlContext.SaveChanges();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
 
@@ -49,9 +49,9 @@ namespace Project_Model_DDD.Infrastructure.Data.Repositories
                 sqlContext.Set<TEntity>().Remove(obj);
                 sqlContext.SaveChanges();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
 

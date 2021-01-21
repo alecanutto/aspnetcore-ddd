@@ -18,6 +18,7 @@ namespace Project_Model_DDD.Application.Mappers
                 .ForMember(dest => dest.Name, opt => opt.MapFrom(x => x.Name))
                 .ForMember(dest => dest.LastName, opt => opt.MapFrom(x => x.LastName))
                 .ForMember(dest => dest.Email, opt => opt.MapFrom(x => x.Email))
+                .ForMember(dest => dest.Address, opt => opt.Ignore())
                 .ForMember(dest => dest.RegistrationDate, opt => opt.Ignore())
                 .ForMember(dest => dest.IsActive, opt => opt.Ignore());
         }

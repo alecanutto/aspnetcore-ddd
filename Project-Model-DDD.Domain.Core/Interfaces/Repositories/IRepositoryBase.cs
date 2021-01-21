@@ -10,7 +10,8 @@ namespace Project_Model_DDD.Domain.Core.Interfaces.Repositories
 
         void Remove(TEntity obj);
 
-        IEnumerable<TEntity> GetAll();
         TEntity GetById(int id);
+
+        IEnumerable<TEntity> GetAll();
     }
 }

@@ -5,4 +5,8 @@
     <RootNamespace>Project_Model_DDD.MVC</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Project-Model-DDD.Domain\Project-Model-DDD.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
