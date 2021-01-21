@@ -3,10 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Project-Model-DDD.MVC", "Project-Model-DDD.MVC\Project-Model-DDD.MVC.csproj", "{AF24B02B-8285-4343-9085-62980A60E8C7}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0 - Presentation", "0 - Presentation", "{1A29B1A6-A7AF-4EC9-A8C6-D47C0C6DBB4D}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Services", "1 - Services", "{CCE68ED3-8E47-4707-89EF-C2A2B348DF20}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Application", "2 - Application", "{07B484FB-BA52-4E45-9A9B-ACB17C4BFE0D}"
@@ -33,10 +29,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{AF24B02B-8285-4343-9085-62980A60E8C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AF24B02B-8285-4343-9085-62980A60E8C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AF24B02B-8285-4343-9085-62980A60E8C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AF24B02B-8285-4343-9085-62980A60E8C7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D7E8926F-459A-4BDD-908C-7013C6437831}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D7E8926F-459A-4BDD-908C-7013C6437831}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7E8926F-459A-4BDD-908C-7013C6437831}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -66,7 +58,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{AF24B02B-8285-4343-9085-62980A60E8C7} = {1A29B1A6-A7AF-4EC9-A8C6-D47C0C6DBB4D}
 		{D7E8926F-459A-4BDD-908C-7013C6437831} = {C6945C05-896E-4210-8865-718EA1480DF0}
 		{77F51DF3-3AC6-41BC-80ED-C0744887763A} = {C6945C05-896E-4210-8865-718EA1480DF0}
 		{36F69BA3-76B8-4A9F-8849-9377EB9819A0} = {C6945C05-896E-4210-8865-718EA1480DF0}
