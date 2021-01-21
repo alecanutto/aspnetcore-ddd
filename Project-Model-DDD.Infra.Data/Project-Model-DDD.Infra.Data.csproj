@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>Project_Model_DDD.Infra.Data</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Project-Model-DDD.Domain.Core\Project-Model-DDD.Domain.Core.csproj" />
+    <ProjectReference Include="..\Project-Model-DDD.Domain.Services\Project-Model-DDD.Domain.Services.csproj" />
+    <ProjectReference Include="..\Project-Model-DDD.Domain\Project-Model-DDD.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

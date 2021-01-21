@@ -6,8 +6,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using Project_Model_DDD.Infraestructure.Data;
-using Project_Model_DDD.Infrastructure.CrossCutting.IOC;
+using Project_Model_DDD.Infra.Data;
+using Project_Model_DDD.Infra.CrossCutting.IOC;
+using System;
+using System.IO;
+using System.Reflection;
 
 namespace Project_Model_DDD.API
 {
@@ -24,10 +27,19 @@ namespace Project_Model_DDD.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<SqlContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SqlConnectionString")));
-            services.AddControllers();
+
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Project_Model_DDD.API", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Project Model DDD API", Version = "v1" });
+
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
+            });
+
+            services.AddControllers().ConfigureApiBehaviorOptions(options =>
+            {
+                options.SuppressModelStateInvalidFilter = true;
             });
         }
 
@@ -43,7 +55,11 @@ namespace Project_Model_DDD.API
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Project_Model_DDD.API v1"));
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Project_Model_DDD.API v1");
+                    c.RoutePrefix = string.Empty;
+                });
             }
 
             app.UseHttpsRedirection();

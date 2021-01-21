@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Project-Model-DDD.API</name>
+    </assembly>
+    <members>
+        <member name="M:Project_Model_DDD.API.Controllers.ClientController.Get">
+            <summary>
+            Get all clients
+            </summary>
+            <returns>return status ok</returns>
+        </member>
+        <member name="M:Project_Model_DDD.API.Controllers.ClientController.GetById(System.Int32)">
+            <summary>
+            Get a client by id
+            </summary>
+            <returns>Returns status ok</returns>
+        </member>
+        <member name="M:Project_Model_DDD.API.Controllers.ClientController.Post(Project_Model_DDD.Application.Dtos.ClientDto)">
+            <summary>
+            Create new client
+            </summary>
+            <returns>return status ok</returns>
+        </member>
+        <member name="M:Project_Model_DDD.API.Controllers.ClientController.Put(Project_Model_DDD.Application.Dtos.ClientDto)">
+            <summary>
+            Update a client
+            </summary>
+            <returns>return status ok</returns>
+        </member>
+        <member name="M:Project_Model_DDD.API.Controllers.ClientController.Delete(Project_Model_DDD.Application.Dtos.ClientDto)">
+            <summary>
+            Delete a client
+            </summary>
+            <returns>return status ok</returns>
+        </member>
+        <member name="M:Project_Model_DDD.API.Controllers.ProductController.Get">
+            <summary>
+            Get all products
+            </summary>
+            <returns>return status ok</returns>
+        </member>
+        <member name="M:Project_Model_DDD.API.Controllers.ProductController.GetById(System.Int32)">
+            <summary>
+            Get a product by id
+            </summary>
+            <returns>Returns status ok</returns>
+        </member>
+        <member name="M:Project_Model_DDD.API.Controllers.ProductController.Post(Project_Model_DDD.Application.Dtos.ProductDto)">
+            <summary>
+            Create new product
+            </summary>
+            <returns>return status ok</returns>
+        </member>
+        <member name="M:Project_Model_DDD.API.Controllers.ProductController.Put(Project_Model_DDD.Application.Dtos.ProductDto)">
+            <summary>
+            Update a products
+            </summary>
+            <returns>return status ok</returns>
+        </member>
+        <member name="M:Project_Model_DDD.API.Controllers.ProductController.Delete(Project_Model_DDD.Application.Dtos.ProductDto)">
+            <summary>
+            Delete a product
+            </summary>
+            <returns>return status ok</returns>
+        </member>
+    </members>
+</doc>

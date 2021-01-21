@@ -1,12 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Project_Model_DDD.API.Filters;
 using Project_Model_DDD.Application.Dtos;
 using Project_Model_DDD.Application.Interfaces;
+using Swashbuckle.AspNetCore.Annotations;
 using System;
 using System.Collections.Generic;
 
 namespace Project_Model_DDD.API.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/v1/[controller]")]
     [ApiController]
     public class ClientController : Controller
     {
@@ -17,22 +19,44 @@ namespace Project_Model_DDD.API.Controllers
             this.applicationServiceClient = applicationServiceClient;
         }
 
-        // GET api/values
+        /// <summary>
+        /// Get all clients
+        /// </summary>
+        /// <returns>return status ok</returns>
+        [SwaggerResponse(statusCode: 200, description: "Action successful")]
+        [SwaggerResponse(statusCode: 500, description: "Internal error", Type = typeof(GenericErrorViewModel))]
+        [CustomModelStateValidation]
         [HttpGet]
+        [Route("")]
         public ActionResult<IEnumerable<string>> Get()
         {
             return Ok(applicationServiceClient.GetAll());
         }
 
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        /// <summary>
+        /// Get a client by id
+        /// </summary>
+        /// <returns>Returns status ok</returns>
+        [SwaggerResponse(statusCode: 201, description: "Action successful")]
+        [SwaggerResponse(statusCode: 500, description: "Internal error", Type = typeof(GenericErrorViewModel))]
+        [CustomModelStateValidation]
+        [HttpGet]
+        [Route("GetById")]
+        public ActionResult<string> GetById(int id)
         {
             return Ok(applicationServiceClient.GetById(id));
         }
 
-        // POST api/values
+        /// <summary>
+        /// Create new client
+        /// </summary>
+        /// <returns>return status ok</returns>
+        [SwaggerResponse(statusCode: 201, description: "Registered successfully")]
+        [SwaggerResponse(statusCode: 400, description: "Fields required", Type = typeof(CheckFieldsViewModelOutput))]
+        [SwaggerResponse(statusCode: 500, description: "Internal error", Type = typeof(GenericErrorViewModel))]
+        [CustomModelStateValidation]
         [HttpPost]
+        [Route("")]
         public ActionResult Post([FromBody] ClientDto clientDto)
         {
             try
@@ -41,7 +65,7 @@ namespace Project_Model_DDD.API.Controllers
                     return NotFound();
 
                 applicationServiceClient.Add(clientDto);
-                return Ok("Cliente Cadastrado com sucesso!");
+                return Created("", applicationServiceClient.GetAll());
             }
             catch (Exception)
             {
@@ -49,8 +73,16 @@ namespace Project_Model_DDD.API.Controllers
             }
         }
 
-        // PUT api/values/5
+        /// <summary>
+        /// Update a client
+        /// </summary>
+        /// <returns>return status ok</returns>
+        [SwaggerResponse(statusCode: 200, description: "Action successful")]
+        [SwaggerResponse(statusCode: 400, description: "Fields required", Type = typeof(CheckFieldsViewModelOutput))]
+        [SwaggerResponse(statusCode: 500, description: "Internal error", Type = typeof(GenericErrorViewModel))]
+        [CustomModelStateValidation]
         [HttpPut]
+        [Route("")]
         public ActionResult Put([FromBody] ClientDto clientDto)
         {
             try
@@ -59,7 +91,7 @@ namespace Project_Model_DDD.API.Controllers
                     return NotFound();
 
                 applicationServiceClient.Update(clientDto);
-                return Ok("Cliente Atualizado com sucesso!");
+                return Ok();
             }
             catch (Exception)
             {
@@ -67,8 +99,15 @@ namespace Project_Model_DDD.API.Controllers
             }
         }
 
-        // DELETE api/values/5
-        [HttpDelete()]
+        /// <summary>
+        /// Delete a client
+        /// </summary>
+        /// <returns>return status ok</returns>
+        [SwaggerResponse(statusCode: 200, description: "Action successful")]
+        [SwaggerResponse(statusCode: 500, description: "Internal error", Type = typeof(GenericErrorViewModel))]
+        [CustomModelStateValidation]
+        [HttpDelete]
+        [Route("")]
         public ActionResult Delete([FromBody] ClientDto clientDto)
         {
             try
@@ -77,7 +116,7 @@ namespace Project_Model_DDD.API.Controllers
                     return NotFound();
 
                 applicationServiceClient.Remove(clientDto);
-                return Ok("Cliente Removido com sucesso!");
+                return Ok();
             }
             catch (Exception)
             {

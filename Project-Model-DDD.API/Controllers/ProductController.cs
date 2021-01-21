@@ -1,12 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Project_Model_DDD.Application.Dtos;
 using Project_Model_DDD.Application.Interfaces;
+using Swashbuckle.AspNetCore.Annotations;
 using System;
 using System.Collections.Generic;
 
 namespace Project_Model_DDD.API.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/v1/[controller]")]
     [ApiController]
     public class ProductController : Controller
     {
@@ -17,22 +18,40 @@ namespace Project_Model_DDD.API.Controllers
             this.applicationServiceProduct = applicationServiceProduct;
         }
 
-        // GET api/values
+        /// <summary>
+        /// Get all products
+        /// </summary>
+        /// <returns>return status ok</returns>
+        [SwaggerResponse(statusCode: 200, description: "Action successful")]
+        [SwaggerResponse(statusCode: 401, description: "Not authorized")]
         [HttpGet]
+        [Route("")]
         public ActionResult<IEnumerable<string>> Get()
         {
             return Ok(applicationServiceProduct.GetAll());
         }
 
-        // GET api/values/5\
-        [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        /// <summary>
+        /// Get a product by id
+        /// </summary>
+        /// <returns>Returns status ok</returns>
+        [SwaggerResponse(statusCode: 201, description: "Registered successfully")]
+        [SwaggerResponse(statusCode: 401, description: "Not authorized")]
+        [HttpGet]
+        [Route("GetById")]
+        public ActionResult<string> GetById(int id)
         {
             return Ok(applicationServiceProduct.GetById(id));
         }
 
-        // POST api/values
+        /// <summary>
+        /// Create new product
+        /// </summary>
+        /// <returns>return status ok</returns>
+        [SwaggerResponse(statusCode: 200, description: "Action successful")]
+        [SwaggerResponse(statusCode: 401, description: "Not authorized")]
         [HttpPost]
+        [Route("")]
         public ActionResult Post([FromBody] ProductDto produtoDto)
         {
             try
@@ -41,7 +60,7 @@ namespace Project_Model_DDD.API.Controllers
                     return NotFound();
 
                 applicationServiceProduct.Add(produtoDto);
-                return Ok("O produto foi cadastrado com sucesso");
+                return Created("", applicationServiceProduct);
             }
             catch (Exception)
             {
@@ -49,8 +68,14 @@ namespace Project_Model_DDD.API.Controllers
             }
         }
 
-        // PUT api/values/5
+        /// <summary>
+        /// Update a products
+        /// </summary>
+        /// <returns>return status ok</returns>
+        [SwaggerResponse(statusCode: 200, description: "Action successful")]
+        [SwaggerResponse(statusCode: 401, description: "Not authorized")]
         [HttpPut]
+        [Route("")]
         public ActionResult Put([FromBody] ProductDto produtoDto)
         {
             try
@@ -59,7 +84,7 @@ namespace Project_Model_DDD.API.Controllers
                     return NotFound();
 
                 applicationServiceProduct.Update(produtoDto);
-                return Ok("O produto foi atualizado com sucesso!");
+                return Ok("");
             }
             catch (Exception)
             {
@@ -67,8 +92,14 @@ namespace Project_Model_DDD.API.Controllers
             }
         }
 
-        // DELETE api/values/5
-        [HttpDelete()]
+        /// <summary>
+        /// Delete a product
+        /// </summary>
+        /// <returns>return status ok</returns>
+        [SwaggerResponse(statusCode: 200, description: "Action successful")]
+        [SwaggerResponse(statusCode: 401, description: "Not authorized")]
+        [HttpDelete]
+        [Route("")]
         public ActionResult Delete([FromBody] ProductDto produtoDto)
         {
             try
@@ -77,7 +108,7 @@ namespace Project_Model_DDD.API.Controllers
                     return NotFound();
 
                 applicationServiceProduct.Remove(produtoDto);
-                return Ok("O produto foi removido com sucesso!");
+                return Ok("");
             }
             catch (Exception)
             {
