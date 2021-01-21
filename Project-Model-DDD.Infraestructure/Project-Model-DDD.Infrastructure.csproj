@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>Project_Model_DDD.Infrastructure</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="6.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Project-Model-DDD.Application\Project-Model-DDD.Application.csproj" />
+    <ProjectReference Include="..\Project-Model-DDD.Domain.Core\Project-Model-DDD.Domain.Core.csproj" />
+    <ProjectReference Include="..\Project-Model-DDD.Domain.Services\Project-Model-DDD.Domain.Services.csproj" />
+    <ProjectReference Include="..\Project-Model-DDD.Domain\Project-Model-DDD.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

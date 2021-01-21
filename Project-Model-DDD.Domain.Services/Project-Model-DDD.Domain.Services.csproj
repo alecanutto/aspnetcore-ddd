@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>Project_Model_DDD.Domain.Services</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Project-Model-DDD.Domain.Core\Project-Model-DDD.Domain.Core.csproj" />
+    <ProjectReference Include="..\Project-Model-DDD.Domain\Project-Model-DDD.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
